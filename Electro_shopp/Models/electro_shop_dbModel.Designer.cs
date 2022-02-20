@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Aspire_systems\Shopping_Mvc\Electro_shopp\Models\electro_shop_dbModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Yuva\source\repos\yuvaraj39\Electro_Shopping\Electro_shopp\Models\electro_shop_dbModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Electro_shopp.ViewModel.ShoppingViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dashboard";
 }
-<scr
+<h2>Dashboard</h2>
 <div class="container">
     <h2 class=" text-center">Product List</h2>
     @foreach(var item in Model)
@@ -11,7 +11,7 @@
                     <div style="text-align:center;border-bottom:1px solid maroon">
                         <h4>@item.ItemName</h4>
                     </div>
-                    
+
                     <div>
                         <div class="col-md-8">
                             <img src="@Url.Content(item.ImagePath)" width="150px" height="150px" />
@@ -29,3 +29,4 @@
                 </div>
             }
 </div>
+

@@ -13,11 +13,11 @@ namespace Electro_shopp.Controllers
     {
         // GET: Item
 
-        private electro_shop_dbEntities objelectro_Shop_DbEntities; 
+        private electro_shop_dbEntities2 objelectro_Shop_DbEntities; 
 
         public ItemController()
         {
-            objelectro_Shop_DbEntities=new electro_shop_dbEntities();
+            objelectro_Shop_DbEntities=new electro_shop_dbEntities2();
 
         }
 

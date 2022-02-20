@@ -9,7 +9,16 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" language="javascript">
 
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,16 +29,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Electro Shopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["Username"] != null)
+                {
+                    @Html.ActionLink("Electro Shopping", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Electro Shopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Shopping")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Item", "Index", "Item")</li>
+                    @if (Session["Username"] != null)
+                    {
+                        <li>@Html.ActionLink("Home", "Dashboard", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Item", "Index", "Item")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
                 </ul>
-                @Html.Partial("_ShoppingCart")
+                <ul class="nav navbar-nav" style="float:right !important">
+                    @if(Session["Username"] != null)
+                    {
+                        <li><p style="color:#fff;margin-top:15px"> Hello @Session["Username"]</p></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Index", "Home")</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

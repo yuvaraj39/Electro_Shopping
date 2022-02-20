@@ -22,12 +22,21 @@
           <Property Name="ItemCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ItemName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
-          <Property Name="ImagePath" Type="nvarchar" MaxLength="550" Nullable="false" />
           <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityContainer Name="electro_shop_dbModelStoreContainer">
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="Master" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="Master" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="Master" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -51,19 +60,28 @@
           <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ItemName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ImagePath" Type="String" MaxLength="550" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="electro_shop_dbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="electro_shop_dbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="electro_shop_dbModelStoreContainer" CdmEntityContainer="electro_shop_dbEntities">
+        <EntityContainerMapping StorageEntityContainer="electro_shop_dbModelStoreContainer" CdmEntityContainer="electro_shop_dbEntities2">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="electro_shop_dbModel.Category">
               <MappingFragment StoreEntitySet="Categories">
@@ -81,8 +99,17 @@
                 <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="electro_shop_dbModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

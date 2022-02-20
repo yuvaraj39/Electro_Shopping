@@ -13,10 +13,10 @@ namespace Electro_shopp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class electro_shop_dbEntities : DbContext
+    public partial class electro_shop_dbEntities2 : DbContext
     {
-        public electro_shop_dbEntities()
-            : base("name=electro_shop_dbEntities")
+        public electro_shop_dbEntities2()
+            : base("name=electro_shop_dbEntities2")
         {
         }
     
@@ -27,5 +27,6 @@ namespace Electro_shopp.Models
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     }
 }
