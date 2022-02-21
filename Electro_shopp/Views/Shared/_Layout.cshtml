@@ -35,7 +35,14 @@
                 }
                 else
                 {
+                    if (Session["AdminUsername"] != null)
+                    {
+                        @Html.ActionLink("Electro Shopping", "Dashboard", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                    else
+                    {
                     @Html.ActionLink("Electro Shopping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    }
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -45,8 +52,7 @@
                         <li>@Html.ActionLink("Home", "Dashboard", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Item", "Index", "Item")</li>
-                    }
+                                            }
                     else
                     {
                         <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -54,16 +60,28 @@
                     }
                 </ul>
                 <ul class="nav navbar-nav" style="float:right !important">
-                    @if(Session["Username"] != null)
+                    @if (Session["Username"] != null)
                     {
                         <li><p style="color:#fff;margin-top:15px"> Hello @Session["Username"]</p></li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
-                        <li>@Html.ActionLink("Login", "Index", "Home")</li>
+                        if (Session["AdminUsername"] != null)
+                        {
+                            <li>@Html.ActionLink("Add Item", "Index", "Item")</li>
+                            <li><p style="color:#fff;margin-top:15px"> Hello Admin @Session["AdminUsername"]</p></li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Admin")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                            <li>@Html.ActionLink("SignUp", "SignUp", "Home")</li>
+                            <li>@Html.ActionLink("Login", "Index", "Home")</li>
+                        }
                     }
+
+
                 </ul>
             </div>
         </div>

@@ -10,7 +10,7 @@ namespace Electro_shopp.Controllers
 {
     public class HomeController : Controller
     {
-        electro_shop_dbEntities2 objelectro_shop_dbEntities = new electro_shop_dbEntities2();
+        electro_shop_dbEntities3 objelectro_shop_dbEntities = new electro_shop_dbEntities3();
 
         public ActionResult About()
         {

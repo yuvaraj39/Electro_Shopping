@@ -13,10 +13,10 @@ namespace Electro_shopp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class electro_shop_dbEntities2 : DbContext
+    public partial class electro_shop_dbEntities3 : DbContext
     {
-        public electro_shop_dbEntities2()
-            : base("name=electro_shop_dbEntities2")
+        public electro_shop_dbEntities3()
+            : base("name=electro_shop_dbEntities3")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Electro_shopp.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Login> Logins { get; set; }

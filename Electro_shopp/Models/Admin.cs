@@ -11,20 +11,11 @@ namespace Electro_shopp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    public partial class Login
+    
+    public partial class Admin
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "This field is required")]
         public string Username { get; set; }
-
-        [Required(ErrorMessage = "This field is required")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "This field is required")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Confirm password doesn't match, try again!")]
-        public string RePassword { get; set; }
     }
 }

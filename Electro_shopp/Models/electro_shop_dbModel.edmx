@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="electro_shop_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -34,6 +42,7 @@
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityContainer Name="electro_shop_dbModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="Master" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="Master" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="Master" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="Master" store:Type="Tables" />
@@ -43,6 +52,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="electro_shop_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -71,7 +88,8 @@
           <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="electro_shop_dbEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="electro_shop_dbEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Logins" EntityType="Self.Login" />
@@ -81,7 +99,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="electro_shop_dbModelStoreContainer" CdmEntityContainer="electro_shop_dbEntities2">
+        <EntityContainerMapping StorageEntityContainer="electro_shop_dbModelStoreContainer" CdmEntityContainer="electro_shop_dbEntities3">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="electro_shop_dbModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="electro_shop_dbModel.Category">
               <MappingFragment StoreEntitySet="Categories">
